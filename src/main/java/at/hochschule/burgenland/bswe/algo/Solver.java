@@ -12,7 +12,7 @@ public class Solver {
      */
     public static boolean isValidNumberInRow(int[][] array, int currentRow, int potentialSolution) {
         // Check if the potentialSolution exists in the same row
-        for (int col = 0; col < array.length; col++) {
+        for (int col = 0; col < array[0].length; col++) {
             if (array[currentRow][col] == potentialSolution) {
                 return false;
             }
