@@ -2,6 +2,15 @@ package at.hochschule.burgenland.bswe.algo;
 
 public class Solver {
 
+    /**
+     * Checks the given potential solution if its a valid solution with the same row of the 2d array / dataframe
+     *
+     * @param array             sudoku array
+     * @param currentRow        current position within the 2d array (row)
+     * @param currentCol        current position with the 2d array (column)
+     * @param potentialSolution the current potential solution to be checked
+     * @return true if its valid
+     */
     public static boolean isValidNumberInRow(int[][] array, int currentRow, int currentCol, int potentialSolution) {
         // Check if the potentialSolution exists in the same row
         for (int col = 0; col < array.length; col++) {
@@ -12,6 +21,15 @@ public class Solver {
         return true;
     }
 
+    /**
+     * Checks the given potential solution if its a valid solution with the same column of the 2d array / dataframe
+     *
+     * @param array             sudoku array
+     * @param currentRow        current position within the 2d array (row)
+     * @param currentCol        current position with the 2d array (column)
+     * @param potentialSolution the current potential solution to be checked
+     * @return true if its valid
+     */
     public static boolean isValidNumberInColumn(int[][] array, int currentRow, int currentCol, int potentialSolution) {
         // Check if potentialSolution exists in same column
         for (int row = 0; row < array.length; row++) {
@@ -22,6 +40,15 @@ public class Solver {
         return true;
     }
 
+    /**
+     * Checks the given potential solution if its a valid solution with the same quadrant of the 2d array / dataframe
+     *
+     * @param array             sudoku array
+     * @param currentRow        current position within the 2d array (row)
+     * @param currentCol        current position with the 2d array (column)
+     * @param potentialSolution the current potential solution to be checked
+     * @return true if its valid
+     */
     public static boolean isValidNumberInQuadrant(int[][] array, int currentRow, int currentCol, int potentialSolution) {
         // Check if potentialSolution exists in same Quadrant
         int quadrantStartRow = currentRow - (currentRow % 3);
