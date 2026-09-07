@@ -11,7 +11,6 @@ public class Solver {
      * @return true if its valid
      */
     public static boolean isValidNumberInRow(int[][] array, int currentRow, int potentialSolution) {
-        // Check if the potentialSolution exists in the same row
         for (int col = 0; col < array[0].length; col++) {
             if (array[currentRow][col] == potentialSolution) {
                 return false;
@@ -29,7 +28,6 @@ public class Solver {
      * @return true if its valid
      */
     public static boolean isValidNumberInColumn(int[][] array, int currentCol, int potentialSolution) {
-        // Check if potentialSolution exists in same column
         for (int row = 0; row < array.length; row++) {
             if (array[row][currentCol] == potentialSolution) {
                 return false;
@@ -48,7 +46,6 @@ public class Solver {
      * @return true if its valid
      */
     public static boolean isValidNumberInQuadrant(int[][] array, int currentRow, int currentCol, int potentialSolution) {
-        // Check if potentialSolution exists in same Quadrant
         int quadrantStartRow = currentRow - (currentRow % 3);
         int quadrantStartCol = currentCol - (currentCol % 3);
 
