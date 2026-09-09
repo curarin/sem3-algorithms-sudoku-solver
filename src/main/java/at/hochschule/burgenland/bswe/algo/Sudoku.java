@@ -1,6 +1,11 @@
 package at.hochschule.burgenland.bswe.algo;
 
+/**
+ * Singleton Sudoku class which holds the current puzzle, an emptyCellCounter as well as offers some public methods
+ * for solving puzzles and stuff.@
+ */
 public class Sudoku {
+    private static Sudoku INSTANCE;
     private int emptyCellCounter;
     private final int[][] sudokuArray;
 
@@ -11,11 +16,15 @@ public class Sudoku {
 
     /**
      * static factory method which creates an instance of a sudoku puzzle
+     *
      * @param sudokuArray raw data (sudoku)
      * @return instance of Sudoku
      */
     public static Sudoku instanceOf(int[][] sudokuArray) {
-        return new Sudoku(sudokuArray);
+        if (INSTANCE == null) {
+            INSTANCE = new Sudoku(sudokuArray);
+        }
+        return INSTANCE;
     }
 
     /**
@@ -124,6 +133,7 @@ public class Sudoku {
 
     /**
      * Getter for sudoku array
+     *
      * @return sudoku 2d array / dataframe
      */
     public int[][] getSudokuArray() {
@@ -132,6 +142,7 @@ public class Sudoku {
 
     /**
      * Counter for empty cells
+     *
      * @return integer with current count of empty cells
      */
     public int getEmptyCellCounter() {
