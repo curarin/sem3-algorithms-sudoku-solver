@@ -12,7 +12,13 @@ public class Application {
             input = handler.getInputChoice();
             switch (input) {
                 case 1 -> {
-                    System.out.println("YOU CHOOSE 1");
+                    int[][] sudokuArray = handler.getManualSudoku();
+                    System.out.println("--------- INITIAL STATE ---------");
+                    StatisticsPrinter.printSudokuBoard(sudokuArray);
+                    int[][] solution = Solver.solve(sudokuArray);
+                    System.out.println("--------- FULL SOLUTION ---------");
+                    StatisticsPrinter.printSudokuBoard(solution);
+                    System.exit(0);
                 }
                 case 2 -> {
                     FileReader fileReader = new FileReader();
