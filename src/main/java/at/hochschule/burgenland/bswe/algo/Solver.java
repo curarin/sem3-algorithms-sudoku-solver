@@ -7,7 +7,8 @@ public class Solver {
         do {
             sudoku.solve();
 
-        } while (sudoku.getEmptyCellCounter() > 0);
+        } while (sudoku.getEmptyCellCounter() > 0 && sudoku.solutionIsStillPossible());
+        System.out.println("Number of full board checks: " + sudoku.getFullSudokuInterationCounter());
         return sudoku.getSudokuArray();
     }
 }

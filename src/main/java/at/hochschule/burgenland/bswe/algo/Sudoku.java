@@ -7,6 +7,9 @@ package at.hochschule.burgenland.bswe.algo;
 public class Sudoku {
     private static Sudoku INSTANCE;
     private int emptyCellCounter;
+    private int lastIterationEmptyCellCounter;
+    private int fullSudokuInterationCounter;
+    private int lastIterationFullSudokuInterationCounter;
     private final int[][] sudokuArray;
 
     private Sudoku(int[][] sudokuArray) {
@@ -97,11 +100,30 @@ public class Sudoku {
     }
 
     /**
+     * Checks whether a solution is still possible or not.
+     *
+     * @return true, if at least one number changes every full board cycle checks
+     */
+    public boolean solutionIsStillPossible() {
+        if (this.lastIterationEmptyCellCounter == this.emptyCellCounter && this.lastIterationFullSudokuInterationCounter != this.fullSudokuInterationCounter) {
+            System.out.println("No Solution is possible anymore - we iterated through a whole board cycle again (before: " + this.lastIterationFullSudokuInterationCounter + ", now: " + this.fullSudokuInterationCounter + ") - but the empty cell counter is still then same as before: (before: " + this.lastIterationEmptyCellCounter + ", now: " + this.emptyCellCounter + ")");
+            return false;
+        }
+        this.lastIterationEmptyCellCounter = this.emptyCellCounter;
+        this.lastIterationFullSudokuInterationCounter = this.fullSudokuInterationCounter;
+        return true;
+    }
+
+    /**
      * Solves the sudoku puzzle with super fancy algorithms
      */
     public void solve() {
         for (int row = 0; row < this.sudokuArray.length; row++) {
             for (int col = 0; col < this.sudokuArray[0].length; col++) {
+                if (row == 0 && col == 0) {
+                    System.out.println("----------------------- STARTING FROM BEGIN -----------------------");
+                    fullSudokuInterationCounter++;
+                }
                 if (this.sudokuArray[row][col] == 0) {
                     System.out.println("Iterating over Row " + row + " and Col " + col);
                     int[] possibleOptions = new int[8];
@@ -147,5 +169,15 @@ public class Sudoku {
      */
     public int getEmptyCellCounter() {
         return this.emptyCellCounter;
+    }
+
+    /**
+     * Returns the count for full board checks. Everytime the algorithm loops through one board state as a whole,
+     * the counter is increased by 1.
+     *
+     * @return number of full board checks
+     */
+    public int getFullSudokuInterationCounter() {
+        return this.fullSudokuInterationCounter;
     }
 }
