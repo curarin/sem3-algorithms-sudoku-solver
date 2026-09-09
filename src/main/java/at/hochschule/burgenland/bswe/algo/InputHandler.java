@@ -38,7 +38,7 @@ public class InputHandler {
             } else {
                 for (int j = 0; j < 9; j++) {
                     try {
-                        manualSudoku[i][j] = Integer.parseInt(row[j]);
+                        manualSudoku[i][j] = Integer.parseInt(row[j].trim());
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid number put in - please put in full numbers only");
                         break;
