@@ -77,6 +77,10 @@ public class Solver {
                             possibleOptions[indexCounter++] = possibleOption;
                             possibleOptionsCounter++;
                             System.out.println("Number " + possibleOption + " is an valid option!");
+                            if (possibleOptionsCounter > 1) {
+                                System.out.println("Breaking out of loop because no valid option can be found in this iteration");
+                                break;
+                            }
                         }
                     }
                     if (possibleOptionsCounter == 1) {
