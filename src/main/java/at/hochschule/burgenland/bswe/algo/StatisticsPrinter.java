@@ -34,5 +34,6 @@ public class StatisticsPrinter {
     }
     public static void printValidOptionInIteration(int row, int col, int validOption) {
         String output = String.format("Valid option found on %s/%s -> %s", row, col, validOption);
+        System.out.println(output);
     }
 }

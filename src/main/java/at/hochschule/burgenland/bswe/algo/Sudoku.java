@@ -134,7 +134,6 @@ public class Sudoku {
                         if (isValidNumberInRow(row, possibleOption) && isValidNumberInColumn(col, possibleOption) && isValidNumberInQuadrant(row, col, possibleOption)) {
                             possibleOptions[indexCounter++] = possibleOption;
                             possibleOptionsCounter++;
-                            StatisticsPrinter.printValidOptionInIteration(row, col, possibleOption);
                             if (possibleOptionsCounter > 1) {
                                 StatisticsPrinter.printBreakingOutOfIterationDueToOptimization(row, col);
                                 break;
@@ -142,7 +141,7 @@ public class Sudoku {
                         }
                     }
                     if (possibleOptionsCounter == 1) {
-                        System.out.println("In row/col " + row + "/" + col + " we found exactly one valid option: " + possibleOptions[0]);
+                        StatisticsPrinter.printValidOptionInIteration(row, col, possibleOptions[0]);
                         this.sudokuArray[row][col] = possibleOptions[0];
                         emptyCellCounter--;
                     }
