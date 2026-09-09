@@ -11,6 +11,7 @@ public class Sudoku {
     private int fullSudokuInterationCounter;
     private int lastIterationFullSudokuInterationCounter;
     private final int[][] sudokuArray;
+    private long algorithmCalculationTimeInMillis;
 
     private Sudoku(int[][] sudokuArray) {
         this.sudokuArray = sudokuArray;
@@ -118,6 +119,7 @@ public class Sudoku {
      * Solves the sudoku puzzle with super fancy algorithms
      */
     public void solve() {
+        long calculationStartingTimeInNanoTime = System.nanoTime();
         for (int row = 0; row < this.sudokuArray.length; row++) {
             for (int col = 0; col < this.sudokuArray[0].length; col++) {
                 if (row == 0 && col == 0) {
@@ -151,6 +153,9 @@ public class Sudoku {
 
             }
         }
+        long calculationEndingTimeInNanoTime = System.nanoTime();
+        long totalDurationInNanoTime = (calculationEndingTimeInNanoTime - calculationStartingTimeInNanoTime) / 1000000;
+        this.algorithmCalculationTimeInMillis = totalDurationInNanoTime + this.algorithmCalculationTimeInMillis;
     }
 
     /**
@@ -179,5 +184,14 @@ public class Sudoku {
      */
     public int getFullSudokuInterationCounter() {
         return this.fullSudokuInterationCounter;
+    }
+
+    /**
+     * Returns the total calculation time in milliseconds for the algorithm calculation
+     *
+     * @return long
+     */
+    public long getAlgorithmCalculationTimeInMillis() {
+        return this.algorithmCalculationTimeInMillis;
     }
 }
