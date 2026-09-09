@@ -18,8 +18,12 @@ public class Application {
                     FileReader fileReader = new FileReader();
                     try {
                         int[][] sudokuArray = fileReader.readSudokuBoard("input.csv");
+                        System.out.println("--------- INITIAL STATE ---------");
+                        StatisticsPrinter.printSudokuBoard(sudokuArray);
                         int[][] solution = Solver.solve(sudokuArray);
+                        System.out.println("--------- FULL SOLUTION ---------");
                         StatisticsPrinter.printSudokuBoard(solution);
+                        System.out.println("--------- FINAL STATE ---------");
                         System.exit(0);
                     } catch (Exception e) {
                         System.out.println("Cant load data from file: " + e.getMessage());
