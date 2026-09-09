@@ -62,8 +62,32 @@ public class Solver {
         return true;
     }
 
-    public static int[][] solveHelper(int[][] array) {
-        return array;
+    public static void solveHelper(int[][] array) {
+        for (int row = 0; row < array.length; row++) {
+            for (int col = 0; col < array[0].length; col++) {
+                if (array[row][col] == 0) {
+                    System.out.println("Iterating over Row " + row + " and Col " + col);
+                    int[] possibleOptions = new int[8];
+                    int possibleOptionsCounter = 0;
+                    int indexCounter = 0;
+
+                    for (int possibleOption = 1; possibleOption < 10; possibleOption++) {
+                        System.out.println("Checking Number " + possibleOption);
+                        if (isValidNumberInRow(array, row, possibleOption) && isValidNumberInColumn(array, col, possibleOption) && isValidNumberInQuadrant(array, row, col, possibleOption)) {
+                            possibleOptions[indexCounter++] = possibleOption;
+                            possibleOptionsCounter++;
+                            System.out.println("Number " + possibleOption + " is an valid option!");
+                        }
+                    }
+                    if (possibleOptionsCounter == 1) {
+                        System.out.println("In row/col " + row + "/" + col + " we found exactly one valid option: " + possibleOptions[0]);
+                        array[row][col] = possibleOptions[0];
+                        emptyCellCounter--;
+                    }
+                }
+
+            }
+        }
     }
 
     /**

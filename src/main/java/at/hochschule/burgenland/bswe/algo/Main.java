@@ -20,6 +20,8 @@ public class Main {
         };
 
         int[][] solution = Solver.solve(sudokuArray);
+        System.out.println("-----------------------");
+        System.out.print("SOLUTION:\n");
         for (int row = 0; row < solution.length; row++) {
             for (int col = 0; col < solution[row].length; col++) {
                 System.out.print(solution[row][col] + " ");
