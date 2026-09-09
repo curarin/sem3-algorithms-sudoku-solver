@@ -1,6 +1,7 @@
 package at.hochschule.burgenland.bswe.algo;
 
 public class Solver {
+    public static int emptyCellCounter;
 
     /**
      * Checks the given potential solution if its a valid solution with the same row of the 2d array / dataframe
@@ -61,12 +62,31 @@ public class Solver {
         return true;
     }
 
-    public static boolean solveHelper(int[][] array, int rowIndex, int colIndex) {
-        return true;
+    public static int[][] solveHelper(int[][] array) {
+        return array;
+    }
+
+    /**
+     * Helper method for counting the total available cells exactly once. Used as cancel condition for iterating over the sudoku if it hits 0.
+     *
+     * @param array Sudoku puzzle
+     */
+    public static void countEmptyCells(int[][] array) {
+        for (int row = 0; row < array.length; row++) {
+            for (int col = 0; col < array[0].length; col++) {
+                if (array[row][col] == 0) {
+                    emptyCellCounter++;
+                }
+            }
+        }
     }
 
     public static int[][] solve(int[][] array) {
-        boolean returnValue = solveHelper(array, 0, 0);
+        countEmptyCells(array);
+        do {
+            solveHelper(array);
+
+        } while (emptyCellCounter > 0);
         return array;
     }
 }

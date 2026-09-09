@@ -2,8 +2,7 @@ package at.hochschule.burgenland.bswe.algo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SolverTest {
     int[][] sudokuArray = {
@@ -83,5 +82,12 @@ public class SolverTest {
         assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 0, 1, 1));
         assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 5, 5, 1));
         assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 1, 6, 1));
+    }
+
+    @Test
+    public void countEmptyCells_givenArrayWith51EmptyCells_shouldReturn51() {
+        assertEquals(0, Solver.emptyCellCounter);
+        Solver.countEmptyCells(sudokuArray);
+        assertEquals(51, Solver.emptyCellCounter);
     }
 }
