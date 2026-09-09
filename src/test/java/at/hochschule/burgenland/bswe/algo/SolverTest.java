@@ -2,6 +2,9 @@ package at.hochschule.burgenland.bswe.algo;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SolverTest {
@@ -18,76 +21,118 @@ public class SolverTest {
             {0, 0, 0, 0, 8, 0, 0, 7, 9} // 8
     };
 
-    @Test
-    public void isValidNumberInRow_givenArrayWithNumberExistInSameRow_shouldReturnFalse() {
-        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertFalse(sudoku.isValidNumberInRow(0, 7));
-        assertFalse(sudoku.isValidNumberInRow(1, 5));
-        assertFalse(sudoku.isValidNumberInRow(2, 8));
-        assertFalse(sudoku.isValidNumberInRow(3, 3));
-        assertFalse(sudoku.isValidNumberInRow(4, 1));
-        assertFalse(sudoku.isValidNumberInRow(5, 2));
-        assertFalse(sudoku.isValidNumberInRow(6, 6));
-        assertFalse(sudoku.isValidNumberInRow(7, 4));
-        assertFalse(sudoku.isValidNumberInRow(8, 8));
+    /**
+     * Source: https://www.baeldung.com/java-unit-test-private-methods
+     *
+     * @return reflection
+     * @throws NoSuchMethodException method does not exist
+     */
+    private Method getIsValidNumberInQuadrant() throws NoSuchMethodException {
+        Method method = Sudoku.class.getDeclaredMethod("isValidNumberInQuadrant", int.class, int.class, int.class);
+        method.setAccessible(true);
+        return method;
+    }
+
+    /**
+     * Source: https://www.baeldung.com/java-unit-test-private-methods
+     *
+     * @return reflection
+     * @throws NoSuchMethodException method does not exist
+     */
+    private Method getIsValidNumberInColumn() throws NoSuchMethodException {
+        Method method = Sudoku.class.getDeclaredMethod("isValidNumberInColumn", int.class, int.class);
+        method.setAccessible(true);
+        return method;
+    }
+
+    /**
+     * Source: https://www.baeldung.com/java-unit-test-private-methods
+     *
+     * @return reflection
+     * @throws NoSuchMethodException method does not exist
+     */
+    private Method getIsValidNumberInRow() throws NoSuchMethodException {
+        Method method = Sudoku.class.getDeclaredMethod("isValidNumberInRow", int.class, int.class);
+        method.setAccessible(true);
+        return method;
     }
 
     @Test
-    public void isValidNumberInRow_givenArrayWithNumberDoesNotExistInSameRow_shouldReturnTrue() {
+    public void isValidNumberInRow_givenArrayWithNumberExistInSameRow_shouldReturnFalse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertTrue(sudoku.isValidNumberInRow(0, 1));
-        assertTrue(sudoku.isValidNumberInRow(1, 2));
-        assertTrue(sudoku.isValidNumberInRow(2, 3));
-        assertTrue(sudoku.isValidNumberInRow(3, 4));
-        assertTrue(sudoku.isValidNumberInRow(4, 5));
-        assertTrue(sudoku.isValidNumberInRow(5, 4));
-        assertTrue(sudoku.isValidNumberInRow(6, 9));
-        assertTrue(sudoku.isValidNumberInRow(7, 2));
-        assertTrue(sudoku.isValidNumberInRow(8, 6));
+        Method method = getIsValidNumberInRow();
+        assertFalse((boolean) method.invoke(sudoku, 0, 7));
+        assertFalse((boolean) method.invoke(sudoku, 1, 5));
+        assertFalse((boolean) method.invoke(sudoku, 2, 8));
+        assertFalse((boolean) method.invoke(sudoku, 3, 3));
+        assertFalse((boolean) method.invoke(sudoku, 4, 1));
+        assertFalse((boolean) method.invoke(sudoku, 5, 2));
+        assertFalse((boolean) method.invoke(sudoku, 6, 6));
+        assertFalse((boolean) method.invoke(sudoku, 7, 4));
+        assertFalse((boolean) method.invoke(sudoku, 8, 8));
     }
 
     @Test
-    public void isValidNumberInColumn_givenArrayWithNumberExistInSameColumn_shouldReturnFalse() {
+    public void isValidNumberInRow_givenArrayWithNumberDoesNotExistInSameRow_shouldReturnTrue() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertFalse(sudoku.isValidNumberInColumn(0, 5));
-        assertFalse(sudoku.isValidNumberInColumn(1, 9));
-        assertFalse(sudoku.isValidNumberInColumn(2, 8));
-        assertFalse(sudoku.isValidNumberInColumn(3, 4));
-        assertFalse(sudoku.isValidNumberInColumn(4, 1));
-        assertFalse(sudoku.isValidNumberInColumn(5, 9));
-        assertFalse(sudoku.isValidNumberInColumn(6, 2));
-        assertFalse(sudoku.isValidNumberInColumn(7, 8));
-        assertFalse(sudoku.isValidNumberInColumn(8, 5));
+        Method method = getIsValidNumberInRow();
+        assertTrue((boolean) method.invoke(sudoku, 0, 1));
+        assertTrue((boolean) method.invoke(sudoku, 1, 2));
+        assertTrue((boolean) method.invoke(sudoku, 2, 3));
+        assertTrue((boolean) method.invoke(sudoku, 3, 4));
+        assertTrue((boolean) method.invoke(sudoku, 4, 5));
+        assertTrue((boolean) method.invoke(sudoku, 5, 4));
+        assertTrue((boolean) method.invoke(sudoku, 6, 9));
+        assertTrue((boolean) method.invoke(sudoku, 7, 2));
+        assertTrue((boolean) method.invoke(sudoku, 8, 6));
     }
 
     @Test
-    public void isValidNumberInColumn_givenArrayWithNumbersDoesNotExistInSameColumn_shouldReturnTrue() {
+    public void isValidNumberInColumn_givenArrayWithNumberExistInSameColumn_shouldReturnFalse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertTrue(sudoku.isValidNumberInColumn(0, 1));
-        assertTrue(sudoku.isValidNumberInColumn(1, 2));
-        assertTrue(sudoku.isValidNumberInColumn(2, 3));
-        assertTrue(sudoku.isValidNumberInColumn(3, 5));
-        assertTrue(sudoku.isValidNumberInColumn(4, 5));
-        assertTrue(sudoku.isValidNumberInColumn(5, 6));
-        assertTrue(sudoku.isValidNumberInColumn(6, 7));
-        assertTrue(sudoku.isValidNumberInColumn(7, 1));
-        assertTrue(sudoku.isValidNumberInColumn(8, 2));
+        Method method = getIsValidNumberInColumn();
+        assertFalse((boolean) method.invoke(sudoku, 0, 5));
+        assertFalse((boolean) method.invoke(sudoku, 1, 9));
+        assertFalse((boolean) method.invoke(sudoku, 2, 8));
+        assertFalse((boolean) method.invoke(sudoku, 3, 4));
+        assertFalse((boolean) method.invoke(sudoku, 4, 1));
+        assertFalse((boolean) method.invoke(sudoku, 5, 9));
+        assertFalse((boolean) method.invoke(sudoku, 6, 2));
+        assertFalse((boolean) method.invoke(sudoku, 7, 8));
+        assertFalse((boolean) method.invoke(sudoku, 8, 5));
     }
 
     @Test
-    public void isValidNumberInQuadrant_givenArrayWithNumberExistsInSameQuadrant_shouldReturnFalse() {
+    public void isValidNumberInColumn_givenArrayWithNumbersDoesNotExistInSameColumn_shouldReturnTrue() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertFalse(sudoku.isValidNumberInQuadrant(6, 6, 9));
-        assertFalse(sudoku.isValidNumberInQuadrant(5, 5, 8));
-        assertFalse(sudoku.isValidNumberInQuadrant(2, 2, 5));
+        Method method = getIsValidNumberInColumn();
+        assertTrue((boolean) method.invoke(sudoku, 0, 1));
+        assertTrue((boolean) method.invoke(sudoku, 1, 2));
+        assertTrue((boolean) method.invoke(sudoku, 2, 3));
+        assertTrue((boolean) method.invoke(sudoku, 3, 5));
+        assertTrue((boolean) method.invoke(sudoku, 4, 5));
+        assertTrue((boolean) method.invoke(sudoku, 5, 6));
+        assertTrue((boolean) method.invoke(sudoku, 6, 7));
+        assertTrue((boolean) method.invoke(sudoku, 7, 1));
+        assertTrue((boolean) method.invoke(sudoku, 8, 2));
     }
 
     @Test
-    public void isValidNumberInQuadrant_givenArrayWithNumberDoesNotExistInSameQuadrant_shouldReturnTrue() {
+    public void isValidNumberInQuadrant_givenArrayWithNumberExistsInSameQuadrant_shouldReturnFalse() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
-        assertTrue(sudoku.isValidNumberInQuadrant(0, 1, 1));
-        assertTrue(sudoku.isValidNumberInQuadrant(5, 5, 1));
-        assertTrue(sudoku.isValidNumberInQuadrant(1, 6, 1));
+        Method method = getIsValidNumberInQuadrant();
+        assertFalse((boolean) method.invoke(sudoku, 6, 6, 9));
+        assertFalse((boolean) method.invoke(sudoku, 5, 5, 8));
+        assertFalse((boolean) method.invoke(sudoku, 2, 2, 5));
+    }
+
+    @Test
+    public void isValidNumberInQuadrant_givenArrayWithNumberDoesNotExistInSameQuadrant_shouldReturnTrue() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        Method method = getIsValidNumberInQuadrant();
+        assertTrue((boolean) method.invoke(sudoku, 0, 1, 1));
+        assertTrue((boolean) method.invoke(sudoku, 5, 5, 1));
+        assertTrue((boolean) method.invoke(sudoku, 1, 6, 1));
     }
 
     @Test

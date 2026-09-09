@@ -34,7 +34,7 @@ public class Sudoku {
      * @param potentialSolution the current potential solution to be checked
      * @return true if its valid
      */
-    public boolean isValidNumberInRow(int currentRow, int potentialSolution) {
+    private boolean isValidNumberInRow(int currentRow, int potentialSolution) {
         for (int col = 0; col < this.sudokuArray[0].length; col++) {
             if (this.sudokuArray[currentRow][col] == potentialSolution) {
                 return false;
@@ -50,7 +50,7 @@ public class Sudoku {
      * @param potentialSolution the current potential solution to be checked
      * @return true if its valid
      */
-    public boolean isValidNumberInColumn(int currentCol, int potentialSolution) {
+    private boolean isValidNumberInColumn(int currentCol, int potentialSolution) {
         for (int row = 0; row < this.sudokuArray.length; row++) {
             if (this.sudokuArray[row][currentCol] == potentialSolution) {
                 return false;
@@ -67,7 +67,7 @@ public class Sudoku {
      * @param potentialSolution the current potential solution to be checked
      * @return true if its valid
      */
-    public boolean isValidNumberInQuadrant(int currentRow, int currentCol, int potentialSolution) {
+    private boolean isValidNumberInQuadrant(int currentRow, int currentCol, int potentialSolution) {
         int quadrantStartRow = currentRow - (currentRow % 3);
         int quadrantStartCol = currentCol - (currentCol % 3);
 
@@ -86,7 +86,7 @@ public class Sudoku {
     /**
      * Helper method for counting the total available cells exactly once. Used as cancel condition for iterating over the sudoku if it hits 0.
      */
-    public void countEmptyCells() {
+    private void countEmptyCells() {
         for (int row = 0; row < this.sudokuArray.length; row++) {
             for (int col = 0; col < this.sudokuArray[0].length; col++) {
                 if (this.sudokuArray[row][col] == 0) {
