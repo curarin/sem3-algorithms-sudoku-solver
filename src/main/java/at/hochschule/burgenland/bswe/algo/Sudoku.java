@@ -107,7 +107,7 @@ public class Sudoku {
      */
     public boolean solutionIsStillPossible() {
         if (this.lastIterationEmptyCellCounter == this.emptyCellCounter && this.lastIterationFullSudokuInterationCounter != this.fullSudokuInterationCounter) {
-            System.out.println("No Solution is possible anymore - we iterated through a whole board cycle again (before: " + this.lastIterationFullSudokuInterationCounter + ", now: " + this.fullSudokuInterationCounter + ") - but the empty cell counter is still then same as before: (before: " + this.lastIterationEmptyCellCounter + ", now: " + this.emptyCellCounter + ")");
+            StatisticsPrinter.printNoSolutionPossible(this.lastIterationFullSudokuInterationCounter, this.fullSudokuInterationCounter, this.lastIterationEmptyCellCounter, this.emptyCellCounter);
             return false;
         }
         this.lastIterationEmptyCellCounter = this.emptyCellCounter;
@@ -123,23 +123,20 @@ public class Sudoku {
         for (int row = 0; row < this.sudokuArray.length; row++) {
             for (int col = 0; col < this.sudokuArray[0].length; col++) {
                 if (row == 0 && col == 0) {
-                    System.out.println("----------------------- STARTING FROM BEGIN -----------------------");
                     fullSudokuInterationCounter++;
                 }
                 if (this.sudokuArray[row][col] == 0) {
-                    System.out.println("Iterating over Row " + row + " and Col " + col);
                     int[] possibleOptions = new int[8];
                     int possibleOptionsCounter = 0;
                     int indexCounter = 0;
 
                     for (int possibleOption = 1; possibleOption < 10; possibleOption++) {
-                        System.out.println("Checking Number " + possibleOption);
                         if (isValidNumberInRow(row, possibleOption) && isValidNumberInColumn(col, possibleOption) && isValidNumberInQuadrant(row, col, possibleOption)) {
                             possibleOptions[indexCounter++] = possibleOption;
                             possibleOptionsCounter++;
-                            System.out.println("Number " + possibleOption + " is an valid option!");
+                            StatisticsPrinter.printValidOptionInIteration(row, col, possibleOption);
                             if (possibleOptionsCounter > 1) {
-                                System.out.println("Breaking out of loop because no valid option can be found in this iteration");
+                                StatisticsPrinter.printBreakingOutOfIterationDueToOptimization(row, col);
                                 break;
                             }
                         }

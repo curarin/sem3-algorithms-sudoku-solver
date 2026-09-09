@@ -10,6 +10,7 @@ public class StatisticsPrinter {
                 }
             }
         }
+        System.out.println("-------------------------------");
     }
 
     public static void printPostGameStatistics(int countFullBoardChecks, long calculationTimeInMillis) {
@@ -21,5 +22,17 @@ public class StatisticsPrinter {
                 ------------------------------------------
                 """, countFullBoardChecks, calculationTimeInMillis);
         System.out.println(output);
+    }
+
+    public static void printNoSolutionPossible(int lastIterationFullSudokuInterationCounter, int fullSudokuInterationCounter, int lastIterationEmptyCellCounter, int emptyCellCounter) {
+        System.out.println("No Solution is possible anymore - we iterated through a whole board cycle again (before: " + lastIterationFullSudokuInterationCounter + ", now: " + fullSudokuInterationCounter + ") - but the empty cell counter is still then same as before: (before: " + lastIterationEmptyCellCounter + ", now: " + emptyCellCounter + ")");
+    }
+
+    public static void printBreakingOutOfIterationDueToOptimization(int row, int col) {
+        String output = String.format("Breaking out of loop on Row/Col %s/%s because we already have more than one valid option.", row, col);
+        System.out.println(output);
+    }
+    public static void printValidOptionInIteration(int row, int col, int validOption) {
+        String output = String.format("Valid option found on %s/%s -> %s", row, col, validOption);
     }
 }

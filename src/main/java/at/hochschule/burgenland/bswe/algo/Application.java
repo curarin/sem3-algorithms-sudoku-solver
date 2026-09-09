@@ -23,7 +23,6 @@ public class Application {
                         int[][] solution = Solver.solve(sudokuArray);
                         System.out.println("--------- FULL SOLUTION ---------");
                         StatisticsPrinter.printSudokuBoard(solution);
-                        System.out.println("--------- FINAL STATE ---------");
                         System.exit(0);
                     } catch (Exception e) {
                         System.out.println("Cant load data from file: " + e.getMessage());
