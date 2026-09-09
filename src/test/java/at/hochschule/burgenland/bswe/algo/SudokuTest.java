@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SolverTest {
+public class SudokuTest {
     int[][] sudokuArray = {
             //0,1,2, 3, 4,  5, 6, 7, 8
             {5, 3, 0, 0, 7, 0, 0, 0, 0}, // 0
