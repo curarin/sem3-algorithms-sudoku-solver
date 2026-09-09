@@ -11,7 +11,7 @@ modellieren und effizient zu lösen. Sie können beispielsweise Arrays, Listen, 
 Stacks, Queues oder eine Kombination davon verwenden.
 Begründen Sie Ihre Wahl der Datenstruktur.
 
-# Algorithmus - Backtracking
+# Algorithmus Deep Dive
 
 # Analyse der Algorithmuskomplexität
 
