@@ -26,19 +26,19 @@ public class InputHandler {
     public int[][] getManualSudoku() {
         int[][] manualSudoku = new int[9][9];
         System.out.println("Please enter all row values like so: 1,2,3,4,5,... - 0 is an empty field to be solved.");
-        for (int i = 0; i < 9; i++) {
-            int prettyRow = i + 1;
+        for (int row = 0; row < 9; row++) {
+            int prettyRow = row + 1;
             System.out.println("Please enter row '" + prettyRow + "':");
             String input = scanner.nextLine();
-            String[] row = input.split(",");
+            String[] rowInput = input.split(",");
 
-            if (row.length != 9) {
-                System.out.println("Solving a 9x9 sudoku involves putting in exactly 9 numbers - we recognized: " + row.length + ". Please try again.");
-                i--;
+            if (rowInput.length != 9) {
+                System.out.println("Solving a 9x9 sudoku involves putting in exactly 9 numbers - we recognized: " + rowInput.length + ". Please try again.");
+                row--;
             } else {
-                for (int j = 0; j < 9; j++) {
+                for (int col = 0; col < 9; col++) {
                     try {
-                        manualSudoku[i][j] = Integer.parseInt(row[j].trim());
+                        manualSudoku[row][col] = Integer.parseInt(rowInput[col].trim());
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid number put in - please put in full numbers only");
                         break;
