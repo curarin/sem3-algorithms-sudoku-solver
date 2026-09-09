@@ -20,74 +20,79 @@ public class SolverTest {
 
     @Test
     public void isValidNumberInRow_givenArrayWithNumberExistInSameRow_shouldReturnFalse() {
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 0, 7));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 1, 5));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 2, 8));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 3, 3));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 4, 1));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 5, 2));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 6, 6));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 7, 4));
-        assertFalse(Solver.isValidNumberInRow(sudokuArray, 8, 8));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertFalse(sudoku.isValidNumberInRow(0, 7));
+        assertFalse(sudoku.isValidNumberInRow(1, 5));
+        assertFalse(sudoku.isValidNumberInRow(2, 8));
+        assertFalse(sudoku.isValidNumberInRow(3, 3));
+        assertFalse(sudoku.isValidNumberInRow(4, 1));
+        assertFalse(sudoku.isValidNumberInRow(5, 2));
+        assertFalse(sudoku.isValidNumberInRow(6, 6));
+        assertFalse(sudoku.isValidNumberInRow(7, 4));
+        assertFalse(sudoku.isValidNumberInRow(8, 8));
     }
 
     @Test
     public void isValidNumberInRow_givenArrayWithNumberDoesNotExistInSameRow_shouldReturnTrue() {
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 0, 1));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 1, 2));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 2, 3));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 3, 4));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 4, 5));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 5, 4));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 6, 9));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 7, 2));
-        assertTrue(Solver.isValidNumberInRow(sudokuArray, 8, 6));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertTrue(sudoku.isValidNumberInRow(0, 1));
+        assertTrue(sudoku.isValidNumberInRow(1, 2));
+        assertTrue(sudoku.isValidNumberInRow(2, 3));
+        assertTrue(sudoku.isValidNumberInRow(3, 4));
+        assertTrue(sudoku.isValidNumberInRow(4, 5));
+        assertTrue(sudoku.isValidNumberInRow(5, 4));
+        assertTrue(sudoku.isValidNumberInRow(6, 9));
+        assertTrue(sudoku.isValidNumberInRow(7, 2));
+        assertTrue(sudoku.isValidNumberInRow(8, 6));
     }
 
     @Test
     public void isValidNumberInColumn_givenArrayWithNumberExistInSameColumn_shouldReturnFalse() {
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 0, 5));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 1, 9));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 2, 8));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 3, 4));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 4, 1));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 5, 9));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 6, 2));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 7, 8));
-        assertFalse(Solver.isValidNumberInColumn(sudokuArray, 8, 5));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertFalse(sudoku.isValidNumberInColumn(0, 5));
+        assertFalse(sudoku.isValidNumberInColumn(1, 9));
+        assertFalse(sudoku.isValidNumberInColumn(2, 8));
+        assertFalse(sudoku.isValidNumberInColumn(3, 4));
+        assertFalse(sudoku.isValidNumberInColumn(4, 1));
+        assertFalse(sudoku.isValidNumberInColumn(5, 9));
+        assertFalse(sudoku.isValidNumberInColumn(6, 2));
+        assertFalse(sudoku.isValidNumberInColumn(7, 8));
+        assertFalse(sudoku.isValidNumberInColumn(8, 5));
     }
 
     @Test
     public void isValidNumberInColumn_givenArrayWithNumbersDoesNotExistInSameColumn_shouldReturnTrue() {
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 0, 1));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 1, 2));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 2, 3));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 3, 5));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 4, 5));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 5, 6));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 6, 7));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 7, 1));
-        assertTrue(Solver.isValidNumberInColumn(sudokuArray, 8, 2));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertTrue(sudoku.isValidNumberInColumn(0, 1));
+        assertTrue(sudoku.isValidNumberInColumn(1, 2));
+        assertTrue(sudoku.isValidNumberInColumn(2, 3));
+        assertTrue(sudoku.isValidNumberInColumn(3, 5));
+        assertTrue(sudoku.isValidNumberInColumn(4, 5));
+        assertTrue(sudoku.isValidNumberInColumn(5, 6));
+        assertTrue(sudoku.isValidNumberInColumn(6, 7));
+        assertTrue(sudoku.isValidNumberInColumn(7, 1));
+        assertTrue(sudoku.isValidNumberInColumn(8, 2));
     }
 
     @Test
     public void isValidNumberInQuadrant_givenArrayWithNumberExistsInSameQuadrant_shouldReturnFalse() {
-        assertFalse(Solver.isValidNumberInQuadrant(sudokuArray, 6, 6, 9));
-        assertFalse(Solver.isValidNumberInQuadrant(sudokuArray, 5, 5, 8));
-        assertFalse(Solver.isValidNumberInQuadrant(sudokuArray, 2, 2, 5));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertFalse(sudoku.isValidNumberInQuadrant(6, 6, 9));
+        assertFalse(sudoku.isValidNumberInQuadrant(5, 5, 8));
+        assertFalse(sudoku.isValidNumberInQuadrant(2, 2, 5));
     }
 
     @Test
     public void isValidNumberInQuadrant_givenArrayWithNumberDoesNotExistInSameQuadrant_shouldReturnTrue() {
-        assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 0, 1, 1));
-        assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 5, 5, 1));
-        assertTrue(Solver.isValidNumberInQuadrant(sudokuArray, 1, 6, 1));
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertTrue(sudoku.isValidNumberInQuadrant(0, 1, 1));
+        assertTrue(sudoku.isValidNumberInQuadrant(5, 5, 1));
+        assertTrue(sudoku.isValidNumberInQuadrant(1, 6, 1));
     }
 
     @Test
     public void countEmptyCells_givenArrayWith51EmptyCells_shouldReturn51() {
-        assertEquals(0, Solver.emptyCellCounter);
-        Solver.countEmptyCells(sudokuArray);
-        assertEquals(51, Solver.emptyCellCounter);
+        Sudoku sudoku = Sudoku.instanceOf(sudokuArray);
+        assertEquals(51, sudoku.getEmptyCellCounter());
     }
 }
