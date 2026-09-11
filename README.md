@@ -14,7 +14,7 @@ Verarbeitung mit Integer-Arrays (`int[]`) gearbeitet.
 Die Verwendung von Arrays ist hier generell sinnvoll, da wir mit primitiven Datentypen in den Arrays arbeiten. Die Werte
 werden direkt im Arbeitsspeicher abgespeichert. Der Zugriff auf (im Falle des 2D-Arrays) bzw. das Einfügen von einzelnen
 Werten (im Falle der 1D-Arrays) erfolgt dabei mit einer
-Zeitkomplexität von `O(1)`. (Vgl. [Geeks for Geeks]("https://www.geeksforgeeks.org/java/arrays-in-java/), abgerufen am
+Zeitkomplexität von `O(1)`. (Vgl. [Geeks for Geeks](https://www.geeksforgeeks.org/java/arrays-in-java/), abgerufen am
 11.09.2026)
 
 # Algorithmus Deep Dive
