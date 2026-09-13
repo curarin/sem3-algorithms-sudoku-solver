@@ -42,6 +42,10 @@ Der aktuell implementierte Algorithmus hat dadurch nachfolgende Limitation:
 
 - Sudokus mit mehreren möglichen Lösungswegen sind nicht lösbar
 
+Idealerweise wäre ein Backtracking-Algorithmus verwendet worden - im Sinne der Übung war es mir jedoch wichtig, eine
+eigenständige Lösung zu entwickeln, ohne bei dabei eine vorgefertigte Sudoku-spezifische Lösung zu übernehmen (über
+welche man zwangsläufig stolpert, wenn man sich online über einen Backtracking-Algorithmus einlesen möchte).
+
 # Analyse der Algorithmuskomplexität
 
 ## Zeitkomplexität
